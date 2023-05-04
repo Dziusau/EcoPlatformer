@@ -163,7 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 529367699}
   - component: {fileID: 529367697}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: movingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 611156504}
   - component: {fileID: 611156506}
   - component: {fileID: 611156505}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 642504925}
   - component: {fileID: 642504924}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bg1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,6 +573,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &903488912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 327413236, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
+  m_PrefabInstance: {fileID: 1044285248}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e4b63030cb0dd4ba479b858538c527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &968060554
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,7 +597,7 @@ GameObject:
   - component: {fileID: 968060559}
   - component: {fileID: 968060557}
   - component: {fileID: 968060556}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -793,6 +804,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5005361270253758912, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
+      propertyPath: OnCrouchEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005361270253758912, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
+      propertyPath: OnCrouchEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005361270253758912, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
+      propertyPath: OnCrouchEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 903488912}
+    - target: {fileID: 5005361270253758912, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
+      propertyPath: OnCrouchEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005361270253758912, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
+      propertyPath: OnCrouchEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCrouching
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005361270253758912, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
+      propertyPath: OnCrouchEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: playerMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005361270253758912, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
+      propertyPath: OnCrouchEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5005361270253758913, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -903,7 +942,7 @@ GameObject:
   - component: {fileID: 1553470563}
   - component: {fileID: 1553470565}
   - component: {fileID: 1553470564}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1725,7 +1764,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732787914}
   - component: {fileID: 1732787913}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bg2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1930,7 +1969,7 @@ GameObject:
   - component: {fileID: 2046872490}
   - component: {fileID: 2046872492}
   - component: {fileID: 2046872491}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
