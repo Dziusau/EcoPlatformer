@@ -2,23 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public int maxEnemies = 5; // maximum number of enemies that can be spawned at a time
     public float spawnInterval = 5f; // time between enemy spawns
     public GameObject enemyPrefab; // prefab of the enemy to spawn
     public Transform[] spawnPoints; // array of spawn points for enemies
-    //public PlayerHealth playerHealth; // reference to the player's health component
-    public int startingHealth = 3; // starting health of the player
 
     private int currentEnemies; // current number of enemies spawned
     private float spawnTimer; // timer for enemy spawning
-
-    private void Start()
-    {
-        // Set player starting health
-        //playerHealth.SetHealth(startingHealth);
-    }
 
     private void Update()
     {

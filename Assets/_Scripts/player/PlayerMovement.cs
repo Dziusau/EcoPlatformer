@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 10f; // the speed at which the player moves
     
-    private playerController playerController;
+    private PlayerController playerController;
     private Animator animator;
     private float horizontalMovement;
     private bool isJump = false;
@@ -15,7 +15,7 @@ public class playerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GetComponent<playerController>();
+        playerController = GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
     }
 
@@ -37,8 +37,6 @@ public class playerMovement : MonoBehaviour
 
         // update the animator's parameters based on the player's movement and jump state
         animator.SetFloat("Speed", Mathf.Abs(horizontalMovement));
-        
-        //animator.SetBool("IsFalling", jumpState == JumpState.Falling);
     }
 
     public void OnLanding()

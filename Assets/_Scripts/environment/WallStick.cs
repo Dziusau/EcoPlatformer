@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class wallStick : MonoBehaviour
+public class WallStick : MonoBehaviour
 {
     [SerializeField] private float stickTime = 1.5f;            // Time player sticks to the wall in seconds
     [SerializeField] private float slideSpeed = 2f;             // Speed at which player slides down the wall

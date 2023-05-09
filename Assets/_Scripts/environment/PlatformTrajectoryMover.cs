@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class platformTrajectoryMover : MonoBehaviour
+public class PlatformTrajectoryMover : MonoBehaviour
 {
     [SerializeField] 
     private Transform pointA; // the start point

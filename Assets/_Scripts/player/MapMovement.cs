@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class mapMovement : MonoBehaviour
+public class MapMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
 

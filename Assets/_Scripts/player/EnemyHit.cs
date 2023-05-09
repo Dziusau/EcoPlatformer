@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyHit : MonoBehaviour
+public class EnemyHit : MonoBehaviour
 {
     [SerializeField] private float attackRange = 1f; // range of the player's attack
     [SerializeField] private int attackDamage = 1; // damage of the player's attack
