@@ -3,69 +3,76 @@ using UnityEngine;
 public class WallStick : MonoBehaviour
 {
     [SerializeField] private float stickTime = 1.5f;            // Time player sticks to the wall in seconds
-    [SerializeField] private float slideSpeed = 2f;             // Speed at which player slides down the wall
+//    [SerializeField] private float slideSpeed = 2f;             // Speed at which player slides down the wall
     [SerializeField] private LayerMask m_WhatIsStickingWall;    // Layer mask for walls that player can stick to
     [SerializeField] private Transform m_WallCheck;             // A position marking where to check the wall.
-    [SerializeField] private float wallStickDistance = 0.5f;    // Maximum distance player can stick to wall
+    [SerializeField] private float wallStickDistance = 0.2f;    // Maximum distance player can stick to wall
 
     private Rigidbody2D rb;
-    private float timeSinceStuck;
+    private float timeSinceStuck = 0f;
     private bool isSticking = false;
-    private RaycastHit2D hit;
+    private float defaultGravityScale;
+    private bool isStickTimeLimit = false;
+    
+    //private RaycastHit2D hit;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        defaultGravityScale = rb.gravityScale;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.A) && !isStickTimeLimit)
+        {
+            CheckForSticking();
+        }
+        else if (Input.GetKeyUp(KeyCode.A))
+        {
+            isSticking = false;
+            isStickTimeLimit = false;
+            rb.gravityScale = defaultGravityScale;
+        }
     }
 
     void FixedUpdate()
     {
-        if (IsStickingToWall())
+        if (isSticking)
         {
-            if (!isSticking) // Player just started sticking to a wall
+            StickToWall();
+        } 
+    }
+
+    private void CheckForSticking()
+    {
+        Collider2D[] walls = Physics2D.OverlapCircleAll(m_WallCheck.position, wallStickDistance, m_WhatIsStickingWall);
+
+        foreach (var wall in walls)
+        {
+            if (wall.gameObject != gameObject)
             {
                 isSticking = true;
             }
-
-            if (timeSinceStuck < stickTime)
-            {
-                timeSinceStuck += Time.fixedDeltaTime;
-                rb.velocity = new Vector2(rb.velocity.x, 0f);
-
-                // Calculate the force needed to counteract gravity and mass.
-                float gravity = Physics2D.gravity.magnitude * rb.gravityScale;
-                Vector2 normal = hit.normal.normalized;
-                Vector2 gravityForce = -normal * gravity * rb.mass;
-
-                // Apply the force to the player to stick them to the wall.
-                rb.AddForce(gravityForce);
-            }
-            else
-            {
-                timeSinceStuck = 0f;
-                rb.velocity = new Vector2(rb.velocity.x, -slideSpeed);
-            }
         }
-        else
-        {
-            if (isSticking) // Player just stopped sticking to a wall
-            {
-                isSticking = false;
-            }
 
-            timeSinceStuck = 0f;
-        }
     }
 
-    bool IsStickingToWall()
+    private void StickToWall()
     {
-        if (transform.position.x > 0)
-            hit = Physics2D.Raycast(transform.position, transform.right, wallStickDistance, m_WhatIsStickingWall);
-        else
-            hit = Physics2D.Raycast(transform.position, -transform.right, wallStickDistance, m_WhatIsStickingWall);
+        rb.gravityScale = 0;
+        rb.velocity = Vector2.zero;
 
+        // Increment the stick timer
+        timeSinceStuck += Time.fixedDeltaTime;
 
-
-        return hit.collider != null;
+        if (timeSinceStuck >= stickTime)
+        {
+            // Player has exceeded the stick time limit, stop sticking and reset the timer
+            isSticking = false;
+            isStickTimeLimit = true;
+            timeSinceStuck = 0f;
+            rb.gravityScale = defaultGravityScale;
+        }
     }
 }

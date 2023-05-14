@@ -3939,11 +3939,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &2118212284 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1860721030, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
-  m_PrefabInstance: {fileID: 5005361270654333673}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5005361270654333673
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3951,6 +3946,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 212763591, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
+      propertyPath: wallStickDistance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266167495, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.155
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005361270253758912, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
+      propertyPath: k_GroundedRadius
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5005361270253758913, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4023,22 +4030,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
---- !u!114 &5005361270654333685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5005361270654333674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f202034584d6bd458b3be6f6323cd11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 1
-  attackDamage: 1
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  m_HitPosiotion: {fileID: 2118212284}
-  coolDown: 0
