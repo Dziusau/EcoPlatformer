@@ -5,22 +5,15 @@ using UnityEngine;
 public class EnemieBehaviour : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float attackRange = 1f;
-    [SerializeField] private int attackDamage = 1;
-    [SerializeField] private float attackDelay = 1f;
-    //[SerializeField] private LayerMask playerLayer;
 
     private Animator animator;
-    private PlayerStats playerStats;
     private GameObject target;
     private bool isMoving = false;
-    private bool isAttacking = false;
-    private float lastAttackTime = 0f;
+    private bool m_FacingRight = true;  // For determining which way the enemy is currently facing.
 
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player");
-        playerStats = target.GetComponent<PlayerStats>();
         animator = GetComponent<Animator>();
     }
 
@@ -28,52 +21,42 @@ public class EnemieBehaviour : MonoBehaviour
     {
         if (target != null)
         {
-            // Move towards the player if they are within range.
-            float distanceToTarget = Vector2.Distance(transform.position, target.transform.position);
-            if (distanceToTarget <= attackRange)
+            // If the player is outside attack range, move towards the player.
+            Vector2 direction = target.transform.position - transform.position;
+            if(direction != Vector2.zero)
             {
-                // If the player is within attack range, stop moving and attack.
-                isMoving = false;
-                if (!isAttacking && Time.time > lastAttackTime + attackDelay)
-                {
-                    Attack();
-                }
+                isMoving = true;
             }
             else
             {
-                // If the player is outside attack range, move towards the player.
-                isMoving = true;
-                isAttacking = false;
-                Vector2 direction = target.transform.position - transform.position;
-                transform.Translate(direction.normalized * speed * Time.deltaTime);
+                isMoving = false;
+            }
+
+            transform.Translate(direction.normalized * speed * Time.deltaTime);
+
+            if(direction.x > 0 && m_FacingRight)
+            {
+                Flip();
+            }
+            else if (direction.x < 0 && !m_FacingRight)
+            {
+                Flip();
             }
         }
 
-        // Update the animator parameters.
-//        animator.SetBool("isMoving", isMoving);
-//        animator.SetBool("attack", isAttacking);
+        //Update the animator parameters.
+        animator.SetBool("isMoving", isMoving);        
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Flip()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Attack();
-        }
+        // Switch the way the enemy is labelled as facing.
+        m_FacingRight = !m_FacingRight;
+
+        // Multiply the enemy's x local scale by -1.
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 
-    void Attack()
-    {
-        isAttacking = true;
-        lastAttackTime = Time.deltaTime;
-
-        playerStats.damagePlayer(attackDamage);
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        // Draw a circle to show the attack range.
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
 }

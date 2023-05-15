@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1266167494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1598, z: 0}
+  m_LocalPosition: {x: 0, y: -0.155, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -142,9 +142,10 @@ GameObject:
   - component: {fileID: 903488911}
   - component: {fileID: 212763591}
   - component: {fileID: 5005361270654333675}
+  - component: {fileID: 2598157494059212865}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,6 +243,7 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 1266167495}
   m_CeilingCheck: {fileID: 1391480883}
   m_CrouchDisableCollider: {fileID: 5005361270253758916}
+  k_GroundedRadius: 0.1
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -382,12 +384,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stickTime: 4
-  slideSpeed: 2
   m_WhatIsStickingWall:
     serializedVersion: 2
     m_Bits: 256
   m_WallCheck: {fileID: 720886080}
-  wallStickDistance: 0.9
+  wallStickDistance: 0.2
 --- !u!114 &5005361270654333675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,3 +408,20 @@ MonoBehaviour:
     m_Bits: 512
   m_HitPosiotion: {fileID: 1860721030}
   coolDown: 2
+--- !u!114 &2598157494059212865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5005361270253758913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144b1d6cef4f61840909f7f72cf336ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  score: 0
+  OnDieEvent:
+    m_PersistentCalls:
+      m_Calls: []

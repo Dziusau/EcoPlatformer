@@ -1,30 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private int health = 3;
+    public int score;
+
+    [Header("Events")]
+    [Space]
+
+    public UnityEvent OnDieEvent;
 
     private int currentHealth;
 
     private void Start()
     {
         currentHealth = health;
+        score = 0;
     }
-    public void damagePlayer(int damage)
+
+    public void DamagePlayer(int damage)
     {
         currentHealth -= damage;
         if (currentHealth == 0)
         {
-            Die();
+            OnDieEvent.Invoke();
         }
+
+        Debug.Log(currentHealth);
     }
 
-    public void Die()
-    {
+    public void HillPlayer(int health) => currentHealth += health;
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    public void AddScore(int score) => this.score += score;
 }

@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHit : MonoBehaviour
+public class HitPlayer : MonoBehaviour
 {
-    [SerializeField] private float attackRange = 1f; // range of the player's attack
-    [SerializeField] private int attackDamage = 1; // damage of the player's attack
-    [SerializeField] private LayerMask enemyLayer; // layer containing the enemies
-    [SerializeField] private Transform m_HitPosiotion;
-    [SerializeField] private float coolDown = 0f;
+    [SerializeField] private float attackRange = 1f;    // range of the player's attack
+    [SerializeField] private int attackDamage = 1;      // damage of the player's attack
+    [SerializeField] private LayerMask enemyLayer;      // layer containing the enemies
+    [SerializeField] private Transform m_HitPosiotion;  // position of hit_dot
+    [SerializeField] private float coolDown = 0f;       // time, while player can not hit
 
-    private Animator animator; // reference to the player's animator component
+    private Animator animator;  // reference to the player's animator component
     private float timer = 0f;
 
     private void Start()
@@ -43,12 +41,4 @@ public class EnemyHit : MonoBehaviour
             //enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage);
         }
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        // Draw attack range gizmo
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
-
 }
