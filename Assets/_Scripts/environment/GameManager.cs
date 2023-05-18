@@ -3,17 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int maxEnemies = 5; // maximum number of enemies that can be spawned at a time
-    public GameObject[] enemyPrefabs; // prefabs of the enemy to spawn
-    public Transform[] spawnPoints; // array of spawn points for enemies
+    //public int maxEnemies = 5; // maximum number of enemies that can be spawned at a time
+    //public GameObject[] enemyPrefabs; // prefabs of the enemy to spawn
+    //public Transform[] spawnPoints; // array of spawn points for enemies
 
-    private int currentEnemies; // current number of enemies spawned
+    //private int currentEnemies; // current number of enemies spawned
 
-    private void Start()
-    {
-        var enemies = GameObject.FindGameObjectsWithTag("enemy");
-        currentEnemies = enemies.Length;
-    }
+    //private void Start()
+    //{
+    //    var enemies = GameObject.FindGameObjectsWithTag("enemy");
+    //    currentEnemies = enemies.Length;
+    //}
 
     //private void Update()
     //{
@@ -23,25 +23,25 @@ public class GameManager : MonoBehaviour
     //    }
     //}
 
-    private void SpawnEnemy()
-    {
-        // Choose a random spawn point
-        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+    //private void SpawnEnemy()
+    //{
+    //    // Choose a random spawn point
+    //    Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-        int index = Random.Range(0, enemyPrefabs.Length);
-        // Instantiate a new enemy at the spawn point
-        GameObject enemy = Instantiate(enemyPrefabs[index], spawnPoint.position, Quaternion.identity);
+    //    int index = Random.Range(0, enemyPrefabs.Length);
+    //    // Instantiate a new enemy at the spawn point
+    //    GameObject enemy = Instantiate(enemyPrefabs[index], spawnPoint.position, Quaternion.identity);
 
-        // Increment the current enemies count
-        currentEnemies++;
-    }
+    //    // Increment the current enemies count
+    //    currentEnemies++;
+    //}
 
-    public void EnemyKilled() => currentEnemies--;
+    //public void EnemyKilled() => currentEnemies--;
 
     public void PlayerDied()
     {
         // Handle player death
         Debug.Log("Player died!");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

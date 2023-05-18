@@ -13,24 +13,28 @@ public class PlayerStats : MonoBehaviour
 
     private int currentHealth;
 
-    private void Start()
+    public int CurrentHealth { get => currentHealth; }
+
+    private void Awake()
     {
         currentHealth = health;
         score = 0;
     }
 
-    public void DamagePlayer(int damage)
+    public void DamagePlayer(int _damage)
     {
-        currentHealth -= damage;
-        if (currentHealth == 0)
+        currentHealth = Mathf.Clamp(currentHealth - _damage, 0, health);
+        if (currentHealth > 0)
+        {
+            Debug.Log(currentHealth);
+        }
+        else
         {
             OnDieEvent.Invoke();
         }
-
-        Debug.Log(currentHealth);
     }
 
-    public void HillPlayer(int health) => currentHealth += health;
+    public void HillPlayer(int _health) => currentHealth += _health;
 
-    public void AddScore(int score) => this.score += score;
+    public void AddScore(int _score) => this.score += _score;
 }
