@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     {
         // Handle player death
         Debug.Log("Player died!");
+        //StartCoroutine(new WaitForSeconds(2));
+        // new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

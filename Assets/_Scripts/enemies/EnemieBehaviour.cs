@@ -32,7 +32,7 @@ public class EnemieBehaviour : MonoBehaviour
                 isMoving = false;
             }
 
-            transform.Translate(direction.normalized * speed * Time.deltaTime);
+            transform.Translate(speed * Time.deltaTime * direction.normalized);
 
             if(direction.x > 0 && m_FacingRight)
             {
