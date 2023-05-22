@@ -41,7 +41,7 @@ public class Parallaxing : MonoBehaviour
         {
             for (int i = 0; i < backgrounds.Length; i++)
             {
-                float parallax = (previousCamPosition.x - camera.position.x) * parallaxScales[i];
+                float parallax = (previousCamPosition.x - camera.position.x) * Mathf.Exp(parallaxScales[i]);
 
                 float backgroungTargetPosX = backgrounds[i].position.x + parallax;
 
