@@ -6,7 +6,6 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int health = 3;
-    //public int score;
 
     private int currentHealth;
 
@@ -21,12 +20,7 @@ public class Health : MonoBehaviour
     private int enemyLayerID;
     private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
 
-
-    [Header("Events")]
-    [Space]
-
-    public UnityEvent OnDieEvent;
-
+    private GameManager gameManager;
 
     public int CurrentHealth { get => currentHealth; }
 
@@ -34,7 +28,7 @@ public class Health : MonoBehaviour
     private void Awake()
     {
         currentHealth = health;
-        //score = 0;
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         GetSpriteRenderers();
 
@@ -52,14 +46,18 @@ public class Health : MonoBehaviour
         }
         else
         {
-            OnDieEvent.Invoke();
+            if (gameObject.CompareTag("Player"))
+            {
+                gameManager.PlayerDied();
+            }
+            else
+            {
+                gameManager.EnemyDied(gameObject);
+            }
         }
     }
 
     public void Hill(int _health) => currentHealth = Mathf.Clamp(currentHealth + _health, 0, health);
-
-    //public void AddScore(int _score) => this.score += _score;
-
 
     private IEnumerator Invulnerability()
     { 

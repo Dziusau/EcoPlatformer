@@ -3,6 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    private int playerScore;
+    private float timer;
+
+    public int PlayerScore { get => playerScore; }
+    public float Timer { get => timer; }
+
     //public int maxEnemies = 5; // maximum number of enemies that can be spawned at a time
     //public GameObject[] enemyPrefabs; // prefabs of the enemy to spawn
     //public Transform[] spawnPoints; // array of spawn points for enemies
@@ -15,13 +21,10 @@ public class GameManager : MonoBehaviour
     //    currentEnemies = enemies.Length;
     //}
 
-    //private void Update()
-    //{
-    //    if (currentEnemies < maxEnemies)
-    //    {
-
-    //    }
-    //}
+    private void Update()
+    {
+        timer += Time.deltaTime;
+    }
 
     //private void SpawnEnemy()
     //{
@@ -37,6 +40,20 @@ public class GameManager : MonoBehaviour
     //}
 
     //public void EnemyKilled() => currentEnemies--;
+
+    private void Awake()
+    {
+        playerScore = 0;
+        timer = 0f;
+    }
+
+    public void AddScore(int _score) => playerScore += _score;
+
+    public void EnemyDied(GameObject enemy)
+    {
+        AddScore(1);
+        Destroy(enemy);
+    }
 
     public void PlayerDied()
     {
