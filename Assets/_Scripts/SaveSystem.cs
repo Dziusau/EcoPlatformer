@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public static class SaveSystem
 {
-    public static string path = Application.persistentDataPath + "players.data"
+    public static string path = Application.persistentDataPath + "players.data";
      public static void SavePlayer(int _score, float _time)
     {
         BinaryFormatter formatter = new BinaryFormatter();

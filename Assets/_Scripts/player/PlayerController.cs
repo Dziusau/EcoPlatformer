@@ -145,4 +145,9 @@ public class PlayerController : MonoBehaviour
 		transform.localScale = theScale;
 	}
 
+    private void OnDrawGizmos()
+    {
+		Gizmos.color = Color.green;
+		Gizmos.DrawWireSphere(m_GroundCheck.position, k_GroundedRadius);
+	}
 }

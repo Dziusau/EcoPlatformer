@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private int playerScore;
+    public int playerScore;
     private float timer;
 
     public int PlayerScore { get => playerScore; }
