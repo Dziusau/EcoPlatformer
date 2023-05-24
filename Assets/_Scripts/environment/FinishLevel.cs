@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class FinishLevel : MonoBehaviour
 {
+    [SerializeField] private GameObject finishMenu;
     private GameManager gameManager;
 
     private void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-                
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,6 +22,7 @@ public class FinishLevel : MonoBehaviour
 
     private void CompleteLevel()
     {
-
+        finishMenu.SetActive(true);
+        Time.timeScale = 0f;
     }
 }

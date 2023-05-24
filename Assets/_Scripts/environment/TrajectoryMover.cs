@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformTrajectoryMover : MonoBehaviour
+public class TrajectoryMover : MonoBehaviour
 {
-    [SerializeField] 
-    private Transform pointA; // the start point
-    [SerializeField]
-    private Transform pointB; // the end point
-    [SerializeField]
-    protected float speed = 2f; // the speed of the platform
+    [SerializeField] private Transform pointA; // the start point
+    [SerializeField] private Transform pointB; // the end point
+    [SerializeField] private float speed = 2f; // the speed of the platform
 
     private Vector3 target; // the current target point
 
