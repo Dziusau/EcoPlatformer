@@ -8,13 +8,17 @@ public class PlayerMovement : MonoBehaviour
     [Header ("Collecting")]
     [SerializeField] private LayerMask collectiblesLayer;
     [SerializeField] private float collectRange = 2f;
+
+    private enum MovementState { idle, running, jumping, falling };
     
     private PlayerController playerController;
     private GameManager gameManager;
     private Animator animator;
+    private Rigidbody2D rigidbody;
     private float horizontalMovement;
-    private bool isJump = false;
-    private bool isCrouch = false;
+    private bool isJump;
+    private bool isCrouch;
+    private MovementState state;
 
     // Start is called before the first frame update
     void Awake()
@@ -22,6 +26,14 @@ public class PlayerMovement : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        isJump = false;
+        isCrouch = false;   
+        state = MovementState.idle;
     }
 
     // Update is called once per frame
@@ -30,10 +42,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalMovement = Input.GetAxisRaw("Horizontal") * moveSpeed; // get the horizontal input axis (left/right arrow keys)
 
         if (Input.GetButtonDown("Jump")) // if the player presses the spacebar
-        { 
             isJump = true;
-            animator.SetBool("IsJumping", true);
-        }
 
         if (Input.GetButtonDown("Crouch"))
             isCrouch = true;
@@ -46,12 +55,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // update the animator's parameters based on the player's movement and jump state
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMovement));
+        UpdateAnimatorState();
     }
 
     public void OnLanding()
     {
-        animator.SetBool("IsJumping", false);
+        Debug.Log("Grounded");
+       // animator.SetBool("IsJumping", false);
     }
 
     public void OnCrouching (bool isCrouching)
@@ -65,6 +75,20 @@ public class PlayerMovement : MonoBehaviour
         isJump = false;
     }
 
+    private void UpdateAnimatorState() 
+    {
+        state = MovementState.idle;
+        
+        if (horizontalMovement != 0f)
+            state = MovementState.running;
+
+        if (rigidbody.velocity.y > 0.1f)
+            state = MovementState.jumping;
+        else if(rigidbody.velocity.y < -0.1f)
+            state = MovementState.falling;
+
+        animator.SetInteger("State", (int) state);
+    }
 
     private void Collect()
     {

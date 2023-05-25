@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -128,9 +129,10 @@ public class PlayerController : MonoBehaviour
 		if (m_Grounded && jump)
 		{
 			// Add a vertical force to the player.
-			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
-		}
+			//StartCoroutine(Delay(1f));
+            m_Grounded = false;
+        }
 	}
 
 
@@ -150,4 +152,11 @@ public class PlayerController : MonoBehaviour
 		Gizmos.color = Color.green;
 		Gizmos.DrawWireSphere(m_GroundCheck.position, k_GroundedRadius);
 	}
+
+
+    private IEnumerator Delay(float delay)
+    {
+        // Wait for the specified delay time
+        yield return new WaitForSeconds(delay);
+    }
 }
