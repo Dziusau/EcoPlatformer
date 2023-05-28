@@ -6,12 +6,12 @@ using System.Collections.Generic;
 public static class SaveSystem
 {
     public static string path = Application.persistentDataPath + "players.data";
-     public static void SavePlayer(int _score, float _time)
+     public static void SavePlayer(string _level, int _score, float _time)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
 
-        PlayerData playerData = new PlayerData(_score, _time);
+        PlayerData playerData = new PlayerData(_level, _score, _time);
 
         formatter.Serialize(stream, playerData);
         stream.Close();

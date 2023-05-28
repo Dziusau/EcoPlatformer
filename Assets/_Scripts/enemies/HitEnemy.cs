@@ -10,18 +10,19 @@ public class HitEnemy : MonoBehaviour
     [SerializeField] private float colliderDistance = 0f;   // distance of hit_collider from the enemy
 
     private Animator animator;          // reference to the enemy's animator component
-    private Health playerHealth;        // reference to the player's Health component
     private float timer = 0f;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();    // get enemy's animator Component
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>(); // get player's Health component
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
+
+        if (GameManager.player == null) 
+            return;
 
         if (IsTouchPlayer() && timer >= coolDown)
         {
@@ -44,7 +45,7 @@ public class HitEnemy : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("attack");
-        playerHealth.TakeDamage(damage);
+        GameManager.player.GetComponent<Health>().TakeDamage(damage);
     }
 
     private void OnDrawGizmos()

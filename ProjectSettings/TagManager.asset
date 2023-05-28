@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - level_01
+  - Enemy
+  - CM_vcam
+  - ScoreText
   layers:
   - Default
   - TransparentFX

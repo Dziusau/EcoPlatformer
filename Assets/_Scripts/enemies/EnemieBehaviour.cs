@@ -7,22 +7,20 @@ public class EnemieBehaviour : MonoBehaviour
     [SerializeField] private float speed = 5f;
 
     private Animator animator;
-    private GameObject target;
     private bool isMoving = false;
     private bool m_FacingRight = true;  // For determining which way the enemy is currently facing.
 
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if (target != null)
+        if (GameManager.player != null)
         {
             // If the player is outside attack range, move towards the player.
-            Vector2 direction = target.transform.position - transform.position;
+            Vector2 direction = GameManager.player.transform.position - transform.position;
             if(direction != Vector2.zero)
             {
                 isMoving = true;
@@ -42,7 +40,7 @@ public class EnemieBehaviour : MonoBehaviour
             {
                 Flip();
             }
-        }
+        } 
 
         //Update the animator parameters.
         animator.SetBool("isMoving", isMoving);        

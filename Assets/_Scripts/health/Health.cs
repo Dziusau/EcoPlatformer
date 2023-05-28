@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
     private void Awake()
     {
         currentHealth = health;
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 
         GetSpriteRenderers();
 
@@ -48,7 +48,7 @@ public class Health : MonoBehaviour
         {
             if (gameObject.CompareTag("Player"))
             {
-                gameManager.PlayerDied();
+                gameManager.PlayerDied(gameObject);
             }
             else
             {

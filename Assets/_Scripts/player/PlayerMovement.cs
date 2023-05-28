@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerController = GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         rigidbody = GetComponent<Rigidbody2D>();
     }
 

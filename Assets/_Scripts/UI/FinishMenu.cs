@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class FinishMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Continue()
     {
-        
+        Debug.Log("Load menu");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Map");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ShowScore(int _score)
     {
-        
+        GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TMP_Text>().text += _score;
     }
 }

@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinishLevel : MonoBehaviour
 {
@@ -9,7 +8,7 @@ public class FinishLevel : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,7 +21,12 @@ public class FinishLevel : MonoBehaviour
 
     private void CompleteLevel()
     {
-        finishMenu.SetActive(true);
         Time.timeScale = 0f;
+
+        finishMenu.SetActive(true);
+        int score = gameManager.CalculateFinalScore();
+        finishMenu.GetComponent<FinishMenu>().ShowScore(score);
+
+        SaveSystem.SavePlayer(SceneManager.GetActiveScene().name, score, gameManager.Timer);
     }
 }

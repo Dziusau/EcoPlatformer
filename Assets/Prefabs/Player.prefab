@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1266167494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.155, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1488, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 182
+    m_Bits: 2176
   m_GroundCheck: {fileID: 1266167495}
   m_CeilingCheck: {fileID: 1391480883}
   m_CrouchDisableCollider: {fileID: 5005361270253758916}
@@ -334,6 +334,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 40
+  collectiblesLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  collectRange: 2
 --- !u!58 &2383177917706597888
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -401,13 +405,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f202034584d6bd458b3be6f6323cd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 1
   attackDamage: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
-  m_HitPosiotion: {fileID: 1860721030}
+  m_HitPosition: {fileID: 1860721030}
   coolDown: 2
+  attackRange: 1
   colliderDistance: 0
 --- !u!114 &2598157494059212865
 MonoBehaviour:
@@ -428,18 +432,3 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
-  OnDieEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: PlayerDied
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
