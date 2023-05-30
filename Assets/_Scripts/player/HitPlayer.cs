@@ -33,7 +33,10 @@ public class HitPlayer : MonoBehaviour
         //animator.SetTrigger("attack");
 
         // Detect enemies in range
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(m_HitPosition.position, attackRange, enemyLayer);
+        Vector3 direction = transform.right * transform.localScale.x;
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(point: m_HitPosition.position + colliderDistance * direction.normalized, 
+                                                             radius: attackRange, 
+                                                             layerMask: enemyLayer);
 
         // Deal damage to hit enemies
         foreach (Collider2D enemy in hitEnemies)
@@ -44,6 +47,7 @@ public class HitPlayer : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(m_HitPosition.position, attackRange);
+        Vector3 direction = transform.right * transform.localScale.x;
+        Gizmos.DrawWireSphere(m_HitPosition.position + colliderDistance * direction.normalized, attackRange);
     }
 }

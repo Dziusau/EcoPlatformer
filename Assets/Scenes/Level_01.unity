@@ -9693,6 +9693,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5005361270654333675, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
+      propertyPath: attackRange
+      value: 0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005361270654333675, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
+      propertyPath: colliderDistance
+      value: 0.28
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f78b79027cc2fd4ab4d51ceeebaa89c, type: 3}
 --- !u!1001 &6113320083208265199
@@ -9806,6 +9814,10 @@ PrefabInstance:
     - target: {fileID: 8444201379401715790, guid: e3482618e76cdd94a993e3c123c42c99, type: 3}
       propertyPath: m_Name
       value: Fish
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444201379401715790, guid: e3482618e76cdd94a993e3c123c42c99, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3482618e76cdd94a993e3c123c42c99, type: 3}
