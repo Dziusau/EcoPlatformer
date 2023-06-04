@@ -71,8 +71,11 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        playerController.Move(horizontalMovement * Time.fixedDeltaTime, isCrouch, isJump);
-        isJump = false;
+        if (!GetComponent<HitPlayer>().IsBlock && !GetComponent<WallStick>().IsSticking)
+        {
+            playerController.Move(horizontalMovement * Time.fixedDeltaTime, isCrouch, isJump);
+            isJump = false;
+        }
     }
 
     private void UpdateAnimatorState() 

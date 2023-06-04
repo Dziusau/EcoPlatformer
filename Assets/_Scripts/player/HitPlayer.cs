@@ -11,6 +11,9 @@ public class HitPlayer : MonoBehaviour
 
     private Animator animator;  // reference to the player's animator component
     private float timer = 0f;
+    private bool isBlock = false;
+
+    public bool IsBlock { get => isBlock; }
 
     private void Awake()
     {
@@ -25,12 +28,23 @@ public class HitPlayer : MonoBehaviour
             Attack();
             timer = 0f;
         }
+
+        if (Input.GetKey(KeyCode.G))
+        {
+            isBlock = true;
+            animator.SetBool("Block", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.G))
+        {
+            isBlock = false;
+            animator.SetBool("Block", false);
+        }
     }
 
     private void Attack()
     {
         // Set the attack animation trigger
-        //animator.SetTrigger("attack");
+        animator.SetTrigger("Hit");
 
         // Detect enemies in range
         Vector3 direction = transform.right * transform.localScale.x;

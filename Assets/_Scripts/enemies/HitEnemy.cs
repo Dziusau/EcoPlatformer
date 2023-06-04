@@ -45,7 +45,10 @@ public class HitEnemy : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("attack");
-        GameManager.player.GetComponent<Health>().TakeDamage(damage);
+        if (!(GameManager.player.GetComponent<HitPlayer>().IsBlock))
+        {
+            GameManager.player.GetComponent<Health>().TakeDamage(damage);
+        }
     }
 
     private void OnDrawGizmos()

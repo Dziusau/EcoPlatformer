@@ -13,7 +13,9 @@ public class WallStick : MonoBehaviour
     private bool isSticking = false;
     private float defaultGravityScale;
     private bool isStickTimeLimit = false;
-    
+
+    public bool IsSticking { get => isSticking; }
+
     //private RaycastHit2D hit;
 
     void Start()
