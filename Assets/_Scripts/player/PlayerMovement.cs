@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalMovement;
     private bool isJump;
     private bool isCrouch;
+    private bool isCollecting;
     private MovementState state;
 
     // Start is called before the first frame update
@@ -51,7 +52,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.D))
         {
+            isCollecting = true;
             Collect();
+            isCollecting = false;
         }
 
         // update the animator's parameters based on the player's movement and jump state
@@ -80,6 +83,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateAnimatorState() 
     {
+        if (isCollecting)
+        {
+            animator.SetTrigger("Collecting");
+            return;
+        }
+        
+        animator.SetBool("IsCrouching", isCrouch);
+
         state = MovementState.idle;
         
         if (horizontalMovement != 0f)
