@@ -30,9 +30,9 @@ public class MapMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the collider has the 'level_**' tag
-        switch (collision.tag)
+        switch (collision.name)
         {
-            case "level_01":
+            case "Level_01":
                 SceneManager.LoadScene("Level_01");
                 break;
         }
