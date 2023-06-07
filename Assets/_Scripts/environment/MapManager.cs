@@ -30,9 +30,15 @@ public class MapManager : MonoBehaviour
 
         foreach (Tilemap level in levels)
         {
-            level.gameObject.SetActive(true);
-            PlayerData completion = playerData.Find(data => data.levelName == level.name);
-            level.GetComponent<CompletionStats>().SetValues(completion.levelName, completion.score, completion.time);
+            if (level.gameObject.GetComponent<CompletionStats>().ScoreForOpen <= totalScore)
+            {
+                level.gameObject.SetActive(true);
+                if (playerData != null)
+                {
+                    PlayerData completion = playerData.Find(data => data.levelName == level.name);
+                    level.GetComponent<CompletionStats>().SetValues(completion.score, completion.time);
+                }
+            }
         }
 
     }

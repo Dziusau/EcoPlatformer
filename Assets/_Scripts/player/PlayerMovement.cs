@@ -53,8 +53,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
             isCollecting = true;
-            Collect();
-            isCollecting = false;
+            Collect();  
         }
 
         // update the animator's parameters based on the player's movement and jump state
@@ -86,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         if (isCollecting)
         {
             animator.SetTrigger("Collecting");
+            isCollecting = false;
             return;
         }
         
